@@ -1,16 +1,8 @@
-# Distance mod template
+# Randomize Car Mod
+This mod allows you to randomize the car right before every single time a level loads.
+Quick warning, this will give you a minor annoyance in the garage. Make sure you have your favorite colors are saved as your main car's colors may get changed.
+This works with custom cars!
 
-Use this repository as a base to create your own Distance mods.
+Car and colors can be randomized separately. By default, the mod has both options turned on. If you want to stop the randomization at any time then you can toggle both options off to stop the randomizing. 
 
-# Using the template
-On github, click the `Use this template` button to create a new repository based on this one
-
-Once the repository is created, be sure to clone it locally **with submodules**:
-```sh
-git clone --recurse-submodules -j8 <your project .git url>
-```
-
-# Setting up the project
-After cloning the repository on your local drive, run the [setup.ps1](setup.ps1) script using [PowerShell 7 or higher](https://github.com/PowerShell/PowerShell#get-powershell).
-
-This script will rename the files correctly and replace their content to match your mod name.
+Settings will be remembered after closing the game. 
