@@ -21,7 +21,15 @@ namespace Distance.RandomizeCar.Harmony
 
             if (Mod.Instance.Config.RandomizeCar)
             {
-                currentProfile_.CarName_ = keys[randomIndex];
+                if (keys[randomIndex] == "Catalyst" && !G.Sys.SteamworksManager_.OwnsCatalystDLC())
+                {
+                    currentProfile_.CarName_ = "Spectrum";
+                }
+                else
+                {
+                    currentProfile_.CarName_ = keys[randomIndex];
+                }
+                Mod.Instance.Logger.Debug("Car Name: " + currentProfile_.CarName_);
             }
             if (Mod.Instance.Config.RandomizeColors)
             {
