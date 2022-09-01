@@ -73,6 +73,11 @@ namespace Distance.RandomizeCar
                 .WithGetter(() => Config.RandomizeColors)
                 .WithSetter((x) => Config.RandomizeColors = x)
                 .WithDescription("Toggle whether or not colors randomize"),
+
+                new CheckBox(MenuDisplayMode.Both, "settings:include_custom", "INCLUDE CUSTOM CARS")
+                .WithGetter(() => Config.IncludeCustomCars)
+                .WithSetter((x) => Config.IncludeCustomCars = x)
+                .WithDescription("Toggle whether or not custom cars are included in randomization"),
             };
 
             Menus.AddNew(MenuDisplayMode.Both, settingsMenu, "RANDOMIZE CAR", "Settings what for the randomize car mod.");

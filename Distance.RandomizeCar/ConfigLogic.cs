@@ -18,6 +18,12 @@ namespace Distance.RandomizeCar
             get { return Get<bool>("RandomizeColors"); }
             set { Set("RandomizeColors", value); }
         }
+
+        public bool IncludeCustomCars
+        {
+            get { return Get<bool>("IncludeCustomCars"); }
+            set { Set("IncludeCustomCars", value); }
+        }
         #endregion
 
         internal Settings Config;
@@ -36,6 +42,7 @@ namespace Distance.RandomizeCar
             //Setting Defaults
             Get("RandomizeCar", true);
             Get("RandomizeColors", true);
+            Get("IncludeCustomCars", true);
             //Save settings to Config.json
             Save();
         }

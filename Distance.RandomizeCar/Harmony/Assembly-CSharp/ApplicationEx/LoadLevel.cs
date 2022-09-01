@@ -13,14 +13,30 @@ namespace Distance.RandomizeCar.Harmony
         [HarmonyPrefix]
         internal static void RandomizeCarPrefix()
         {
-            Random random = new Random();
-            List<string> keys = new List<string>(G.Sys.ProfileManager_.knownCars_.Keys);
-            Profile currentProfile_ = G.Sys.ProfileManager_.CurrentProfile_;
-            int randomIndex = random.Next(0, keys.Count);
-
-
             if (Mod.Instance.Config.RandomizeCar)
             {
+                //Assign some variables
+                Random random = new Random();
+                ProfileManager profileManager = G.Sys.ProfileManager_;
+                Profile currentProfile_ = profileManager.CurrentProfile_;
+
+                //Create List for cars to randomize from. 
+                List<string> keys = new List<string>();
+                if (!Mod.Instance.Config.IncludeCustomCars)
+                {
+                    foreach (var unlockableCar in ProfileManager.unlockableCars_)
+                    {
+                        keys.Add(profileManager.CarInfos_[unlockableCar.index_].name_);
+
+                    }
+                }
+                else
+                {
+                    keys = new List<string>(profileManager.knownCars_.Keys);
+                }
+
+                //Choose a random car from the list
+                int randomIndex = random.Next(0, keys.Count);
                 if (keys[randomIndex] == "Catalyst" && !G.Sys.SteamworksManager_.OwnsCatalystDLC())
                 {
                     currentProfile_.CarName_ = "Spectrum";
@@ -30,11 +46,14 @@ namespace Distance.RandomizeCar.Harmony
                     currentProfile_.CarName_ = keys[randomIndex];
                 }
                 Mod.Instance.Logger.Debug("Car Name: " + currentProfile_.CarName_);
+
+                //Randomize colors as well if that's enabled
+                if (Mod.Instance.Config.RandomizeColors)
+                {
+                    currentProfile_.CarColors_ = new CarColors(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV());
+                }
             }
-            if (Mod.Instance.Config.RandomizeColors)
-            {
-                currentProfile_.CarColors_ = new CarColors(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV());
-            }
+            
         }
     }
 }
