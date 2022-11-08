@@ -13,13 +13,13 @@ namespace Distance.RandomizeCar.Harmony
         [HarmonyPrefix]
         internal static void RandomizeCarPrefix()
         {
+            //Assign some variables
+            Random random = new Random();
+            ProfileManager profileManager = G.Sys.ProfileManager_;
+            Profile currentProfile_ = profileManager.CurrentProfile_;
+
             if (Mod.Instance.Config.RandomizeCar)
             {
-                //Assign some variables
-                Random random = new Random();
-                ProfileManager profileManager = G.Sys.ProfileManager_;
-                Profile currentProfile_ = profileManager.CurrentProfile_;
-
                 //Create List for cars to randomize from. 
                 List<string> keys = new List<string>();
                 if (!Mod.Instance.Config.IncludeCustomCars)
@@ -27,7 +27,6 @@ namespace Distance.RandomizeCar.Harmony
                     foreach (var unlockableCar in ProfileManager.unlockableCars_)
                     {
                         keys.Add(profileManager.CarInfos_[unlockableCar.index_].name_);
-
                     }
                 }
                 else
@@ -47,13 +46,14 @@ namespace Distance.RandomizeCar.Harmony
                 }
                 Mod.Instance.Logger.Debug("Car Name: " + currentProfile_.CarName_);
 
-                //Randomize colors as well if that's enabled
-                if (Mod.Instance.Config.RandomizeColors)
-                {
-                    currentProfile_.CarColors_ = new CarColors(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV());
-                }
+                
             }
-            
+
+            //Randomize colors as well if that's enabled
+            if (Mod.Instance.Config.RandomizeColors)
+            {
+                currentProfile_.CarColors_ = new CarColors(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV());
+            }
         }
     }
 }

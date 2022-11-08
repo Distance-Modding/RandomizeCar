@@ -80,7 +80,7 @@ namespace Distance.RandomizeCar
                 .WithDescription("Toggle whether or not custom cars are included in randomization"),
             };
 
-            Menus.AddNew(MenuDisplayMode.Both, settingsMenu, "RANDOMIZE CAR", "Settings what for the randomize car mod.");
+            Menus.AddNew(MenuDisplayMode.Both, settingsMenu, "RANDOMIZE CAR", "Settings for the randomize car mod.");
         }
 	}
 }
